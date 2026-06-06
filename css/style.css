@@ -1,0 +1,33 @@
+/* BASE — crie a pasta css/base/ com esses arquivos */
+@import url('./base/reset.css');
+@import url('./base/variables.css');
+@import url('./base/typography.css');
+@import url('./base/global.css');
+
+/* LAYOUT */
+@import url('./layout/nav.css');
+@import url('./layout/sections.css');
+@import url('./layout/footer.css');
+
+/* COMPONENTS */
+@import url('./components/modals.css');
+@import url('./components/forms.css');
+@import url('./components/buttons.css');
+@import url('./components/cards.css');
+@import url('./components/tabs.css');
+@import url('./components/animations.css');
+
+/* SECTIONS */
+@import url('./sections/hero.css');
+@import url('./sections/sobre.css');
+@import url('./sections/pilares.css');
+@import url('./sections/pilates.css');
+@import url('./sections/yoga.css');
+@import url('./sections/servicos.css');
+@import url('./sections/beneficions.css');
+@import url('./sections/localizacao.css');
+@import url('./sections/agendamento.css');
+@import url('./sections/eventos.css');
+
+/* RESPONSIVE — pasta se chama "responsividade", não "responsive" */
+@import url('./responsividade/mobile.css');

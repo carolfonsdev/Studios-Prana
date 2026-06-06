@@ -1,0 +1,61 @@
+.section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--roxo-light);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 0.5px;
+    background: var(--roxo-light);
+}
+
+.section-header {
+    margin-bottom: 3rem;
+}
+
+.section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--roxo-light);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 0.5px;
+    background: var(--roxo-light);
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--verde);
+}
+
+.section-title em {
+    font-style: italic;
+    color: var(--roxo);
+}
+
+.section-desc {
+    font-size: 14px;
+    color: var(--texto-muted);
+    line-height: 1.8;
+    margin-top: 1rem;
+}

@@ -1,0 +1,54 @@
+.beneficios-section {
+    padding: 5rem 5rem;
+    background: var(--branco);
+    border-top: 0.5px solid rgba(0, 0, 0, 0.07);
+}
+
+.beneficios-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.beneficios-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--verde);
+}
+
+.beneficios-title em {
+    font-style: italic;
+    color: var(--roxo);
+}
+
+.beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+
+
+.beneficio-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--roxo-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--roxo);
+}
+
+.beneficio-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--texto);
+}
+
+.beneficio-desc {
+    font-size: 12px;
+    color: var(--texto-muted);
+    line-height: 1.6;
+}

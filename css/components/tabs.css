@@ -1,0 +1,57 @@
+.planos-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2rem;
+    border: 0.5px solid rgba(107, 94, 168, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.plano-tab {
+    padding: 10px 24px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    color: var(--texto-muted);
+    transition: all 0.2s;
+}
+
+.plano-tab.active {
+    background: var(--roxo);
+    color: #fff;
+}
+
+.yoga-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2rem;
+    border: 0.5px solid rgba(107, 94, 168, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.yoga-tab {
+    padding: 10px 28px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    color: var(--texto-muted);
+    transition: all 0.2s;
+}
+
+.yoga-tab.active {
+    background: var(--roxo);
+    color: #fff;
+}

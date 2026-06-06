@@ -1,0 +1,115 @@
+.plano-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.agendar-steps {
+    width: 250px;
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.25rem;
+}
+
+.agendar-step-dot {
+    height: 3px;
+    border-radius: 3px;
+    flex: 1;
+    background: rgba(107, 94, 168, 0.15);
+    transition: background 0.3s;
+}
+
+.agendar-step-dot.active {
+    background: var(--roxo);
+}
+
+.agendar-step-dot.done {
+    background: var(--verde);
+}
+
+.agendar-step-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--roxo-light);
+    margin-bottom: 4px;
+}
+
+.agendar-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--verde);
+    line-height: 1.2;
+}
+
+.agendar-title em {
+    font-style: italic;
+    color: var(--roxo);
+}
+
+
+/* Opções de seleção */
+.opcoes-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.opcoes-grid-2 {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+}
+
+.horarios-section {
+    margin-bottom: 1.5rem;
+}
+
+.horarios-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.horarios-label span {
+    font-size: 10px;
+    color: var(--texto-muted);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+.horarios-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.dados-resumo {
+    background: var(--roxo-bg);
+    border: 0.5px solid rgba(107, 94, 168, 0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--texto-muted);
+    line-height: 1.7;
+}
+
+.dados-resumo strong {
+    color: var(--roxo);
+    font-weight: 500;
+}
+
+.plano-opcao.selected .plano-popular-badge {
+  color: white;
+}
+
+.plano-opcao-preco {
+  font-family: var(--font-body);
+  font-size: 17px;
+}

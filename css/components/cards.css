@@ -1,0 +1,167 @@
+.servico-card {
+    background: var(--branco);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 0.5px solid rgba(0, 0, 0, 0.06);
+}
+
+.servico-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(107, 94, 168, 0.12);
+}
+
+.yoga-card {
+    background: var(--bege);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    border: 0.5px solid rgba(0, 0, 0, 0.06);
+}
+
+.evento-card-novo {
+    background: var(--bege);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 0.5px solid rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+}
+
+.evento-card-novo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(107, 94, 168, 0.12);
+}
+
+.beneficio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+}
+
+.plano-opcao {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1.5px solid rgba(107, 94, 168, 0.18);
+    border-radius: 14px;
+    background: var(--branco);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.plano-opcao:hover {
+    border-color: var(--roxo);
+}
+
+.plano-opcao.selected {
+    border-color: var(--roxo);
+    background: var(--roxo);
+}
+
+.plano-opcao-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(107, 94, 168, 0.3);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    color: transparent;
+    font-size: 11px;
+}
+
+.plano-opcao.selected .plano-opcao-check {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: transparent;
+    color: #fff;
+}
+
+.plano-opcao-info {
+    flex: 1;
+}
+
+.plano-opcao-nome {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto);
+    transition: color 0.2s;
+}
+
+.plano-opcao.selected .plano-opcao-nome {
+    color: #fff;
+}
+
+.plano-opcao-detalhe {
+    font-size: 12px;
+    color: var(--texto-muted);
+    margin-top: 2px;
+    transition: color 0.2s;
+}
+
+.plano-opcao.selected .plano-opcao-detalhe {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.plano-opcao-preco {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--roxo);
+    transition: color 0.2s;
+}
+
+.plano-opcao.selected .plano-opcao-preco {
+    color: #fff;
+}
+
+.opcao-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--roxo-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--roxo);
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.opcao-btn.selected .opcao-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.opcao-info {
+    flex: 1;
+}
+
+.opcao-nome {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto);
+    transition: color 0.2s;
+}
+
+.opcao-btn.selected .opcao-nome {
+    color: #fff;
+}
+
+.opcao-detalhe {
+    font-size: 11px;
+    color: var(--texto-muted);
+    margin-top: 2px;
+    transition: color 0.2s;
+}
+
+.opcao-btn.selected .opcao-detalhe {
+    color: rgba(255, 255, 255, 0.75);
+}

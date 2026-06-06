@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studios Prana – Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --prana-purple: #7B6FCC;
+    --prana-purple-light: #EAE7F8;
+    --prana-purple-mid: #C4BEE8;
+    --prana-purple-dark: #4A3E99;
+    --prana-purple-muted: #F4F2FB;
+    --sidebar-bg: #FAFAF9;
+    --bg: #F5F4F0;
+    --card-bg: #FFFFFF;
+    --text-main: #2C2B28;
+    --text-muted: #888780;
+    --text-light: #B4B2A9;
+    --border: #E8E6DE;
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --radius: 14px;
+    --radius-sm: 9px;
+    --sidebar-w: 220px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    display: flex;
+    min-height: 100vh;
+    font-size: 14px;
+  }
+
+  /* SIDEBAR */
+  aside {
+    width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 10;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px 28px;
+  }
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: var(--prana-purple-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-icon svg { width: 20px; height: 20px; }
+  .logo-text { line-height: 1.1; }
+  .logo-text span { display: block; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+  .logo-text strong { font-size: 17px; font-weight: 600; letter-spacing: 0.04em; color: var(--prana-purple-dark); }
+
+  nav { flex: 1; padding: 0 10px; }
+  nav a {
+    display: flex; align-items: center; gap: 11px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 2px;
+    transition: background 0.15s, color 0.15s;
+  }
+  nav a:hover { background: var(--prana-purple-light); color: var(--prana-purple); }
+  nav a.active { background: var(--prana-purple-light); color: var(--prana-purple); font-weight: 500; }
+  nav a svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  .sidebar-footer {
+    padding: 20px 20px 0;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    color: var(--prana-purple-mid);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .lotus {
+    margin-top: 12px;
+    opacity: 0.15;
+  }
+
+  /* MAIN */
+  main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 28px 28px 40px;
+    max-width: calc(100vw - var(--sidebar-w));
+    overflow-x: hidden;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .topbar-greeting h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 3px;
+  }
+  .topbar-greeting p { color: var(--text-muted); font-size: 13px; }
+  .topbar-actions {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .notif-btn {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .notif-btn svg { width: 18px; height: 18px; color: var(--text-muted); }
+  .badge {
+    position: absolute; top: 6px; right: 6px;
+    width: 8px; height: 8px;
+    background: var(--prana-purple);
+    border-radius: 50%;
+    border: 1.5px solid white;
+  }
+  .user-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 12px 5px 5px;
+    cursor: pointer;
+    font-size: 13px; font-weight: 500;
+    color: var(--text-main);
+  }
+  .avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--prana-purple-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600; color: var(--prana-purple-dark);
+    flex-shrink: 0;
+  }
+
+  /* STAT CARDS */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex; flex-direction: column;
+  }
+  .stat-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--prana-purple-muted);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+  }
+  .stat-icon svg { width: 18px; height: 18px; color: var(--prana-purple); }
+  .stat-label { font-size: 11px; color: var(--text-muted); margin-bottom: 2px; font-weight: 400; }
+  .stat-value { font-size: 26px; font-weight: 600; color: var(--text-main); line-height: 1; margin-bottom: 6px; }
+  .stat-link { font-size: 11px; color: var(--prana-purple); text-decoration: none; margin-top: auto; }
+  .stat-link:hover { text-decoration: underline; }
+  .stat-sub { font-size: 11px; color: var(--green); font-weight: 500; margin-bottom: 6px; }
+
+  /* LAYOUT 2 COL */
+  .layout-two {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 20px;
+  }
+  .col-left { display: flex; flex-direction: column; gap: 20px; }
+  .col-right { display: flex; flex-direction: column; gap: 20px; }
+
+  /* CARD */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .card-title { font-size: 15px; font-weight: 600; }
+  .card-date { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+  .card-link { font-size: 12px; color: var(--prana-purple); text-decoration: none; font-weight: 500; }
+  .card-link:hover { text-decoration: underline; }
+
+  /* AGENDA TABLE */
+  .agenda-list { display: flex; flex-direction: column; gap: 2px; }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 110px 1fr 80px 100px auto 24px;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: background 0.1s;
+  }
+  .agenda-item:hover { background: var(--prana-purple-muted); padding-left: 8px; }
+  .agenda-item:last-child { border-bottom: none; }
+  .agenda-time { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+  .agenda-name { font-size: 13px; font-weight: 500; }
+  .agenda-count { font-size: 12px; color: var(--text-muted); }
+  .agenda-tag {
+    font-size: 11px; font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--green-light);
+    color: var(--green);
+    text-align: center;
+  }
+  .avatar-stack { display: flex; align-items: center; }
+  .avatar-stack .av {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: var(--prana-purple-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 600;
+    color: var(--prana-purple-dark);
+    margin-left: -6px;
+    flex-shrink: 0;
+  }
+  .avatar-stack .av:first-child { margin-left: 0; }
+  .av-more {
+    background: var(--prana-purple-muted) !important;
+    color: var(--prana-purple) !important;
+    font-size: 9px !important;
+  }
+  .agenda-arrow { color: var(--text-light); font-size: 16px; }
+  .ver-semana {
+    display: flex; align-items: center; justify-content: flex-end;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 12px; color: var(--prana-purple);
+    cursor: pointer; text-decoration: none; font-weight: 500;
+  }
+
+  /* BOTTOM ROW */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* BAR CHART */
+  .chart-area { margin-top: 10px; }
+  .bars {
+    display: flex; align-items: flex-end;
+    gap: 8px;
+    height: 120px;
+  }
+  .bar-col {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .bar-pct { font-size: 10px; color: var(--text-muted); }
+  .bar {
+    width: 100%;
+    background: var(--prana-purple-mid);
+    border-radius: 5px 5px 0 0;
+    transition: height 0.4s ease;
+  }
+  .bar-label { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+  .chart-footer { margin-top: 10px; text-align: right; }
+
+  /* NOVOS ALUNOS */
+  .aluno-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .aluno-item:last-child { border-bottom: none; }
+  .aluno-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--prana-purple-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; color: var(--prana-purple-dark);
+  }
+  .aluno-info { flex: 1; }
+  .aluno-name { font-size: 13px; font-weight: 500; }
+  .aluno-date { font-size: 11px; color: var(--text-muted); }
+  .aluno-arrow { color: var(--text-light); font-size: 14px; }
+
+  /* RIGHT COL */
+  .proximas-item {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 10px;
+    align-items: start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .proximas-item:last-child { border-bottom: none; }
+  .prox-date {
+    background: var(--prana-purple-muted);
+    border-radius: 8px;
+    text-align: center;
+    padding: 6px 4px;
+    line-height: 1.2;
+  }
+  .prox-date .day { font-size: 16px; font-weight: 700; color: var(--prana-purple-dark); }
+  .prox-date .month { font-size: 9px; text-transform: uppercase; color: var(--prana-purple); font-weight: 600; }
+  .prox-name { font-size: 12px; font-weight: 500; margin-bottom: 2px; }
+  .prox-time { font-size: 11px; color: var(--text-muted); }
+  .tag-conf {
+    font-size: 10px; padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--green-light);
+    color: var(--green);
+    font-weight: 500;
+    white-space: nowrap;
+    align-self: center;
+  }
+
+  /* LEMBRETES */
+  .lembrete-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .lembrete-item:last-child { border-bottom: none; }
+  .lembrete-icon {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: var(--prana-purple-muted);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .lembrete-icon svg { width: 16px; height: 16px; color: var(--prana-purple); }
+  .lembrete-title { font-size: 12px; font-weight: 500; }
+  .lembrete-sub { font-size: 11px; color: var(--text-muted); }
+  .lembrete-arrow { margin-left: auto; color: var(--text-light); font-size: 14px; }
+
+  /* AÇÕES RÁPIDAS */
+  .acoes-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 8px; margin-top: 4px;
+  }
+  .acao-btn {
+    background: var(--prana-purple-muted);
+    border: none; cursor: pointer;
+    border-radius: 10px;
+    padding: 12px 6px;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; color: var(--prana-purple-dark);
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+  .acao-btn:hover { background: var(--prana-purple-mid); }
+  .acao-btn svg { width: 18px; height: 18px; color: var(--prana-purple); }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside>
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--prana-purple)">
+        <path d="M12 2C6.5 2 4 6 4 10c0 2.5 1 4.5 2.5 6L12 22l5.5-6C19 14.5 20 12.5 20 10c0-4-2.5-8-8-8z"/>
+        <circle cx="12" cy="10" r="2.5"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span>studios</span>
+      <strong>PRANA</strong>
+    </div>
+  </div>
+  <nav>
+    <a href="dashboard-prana.html" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      Dashboard
+    </a>
+    <a href="agenda-prana.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Agenda
+    </a>
+    <a href="aluno-perfil.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Alunos
+    </a>
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+      Documentos
+    </a>
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M16.24 7.76a6 6 0 010 8.49M7.76 7.76a6 6 0 000 8.49"/></svg>
+      Configurações
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <em>Equilíbrio que<br>transforma.</em>
+    <div class="lotus">
+      <svg width="80" height="60" viewBox="0 0 80 60" fill="none" stroke="var(--prana-purple)" stroke-width="1.5">
+        <path d="M40 50 C30 40 10 35 10 20 C10 10 20 5 30 10 C35 12 38 16 40 20 C42 16 45 12 50 10 C60 5 70 10 70 20 C70 35 50 40 40 50Z"/>
+        <path d="M40 50 C35 38 20 32 22 18"/>
+        <path d="M40 50 C45 38 60 32 58 18"/>
+        <path d="M40 50 C40 38 40 30 40 20"/>
+      </svg>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-greeting">
+      <h1>Olá, Professora Soraya! 👋</h1>
+      <p>Bem-vinda ao seu painel. Aqui está o resumo do seu estúdio hoje.</p>
+    </div>
+    <div class="topbar-actions">
+      <button class="notif-btn" aria-label="Notificações">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+        <span class="badge"></span>
+      </button>
+      <div class="user-chip">
+        <div class="avatar">SO</div>
+        Professora Soraya
+      </div>
+    </div>
+  </div>
+
+  <!-- STAT CARDS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 014-4h4"/><circle cx="17" cy="14" r="3"/><path d="M14 21v-1a3 3 0 013-3h0a3 3 0 013 3v1"/></svg>
+      </div>
+      <div class="stat-label">Alunos ativos</div>
+      <div class="stat-value">2</div>
+      <a href="#" class="stat-link">Ver todos os alunos</a>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      </div>
+      <div class="stat-label">Aulas hoje</div>
+      <div class="stat-value">3</div>
+      <a href="#" class="stat-link">Ver agenda do dia</a>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="stat-label">Presenças hoje</div>
+      <div class="stat-value">2</div>
+      <div class="stat-sub">100% de presença</div>
+      <a href="#" class="stat-link">Ver presenças</a>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <div class="stat-label">Avaliações pendentes</div>
+      <div class="stat-value">1</div>
+      <a href="#" class="stat-link">Ver avaliações</a>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+      </div>
+      <div class="stat-label">Aniversariantes</div>
+      <div class="stat-value">0</div>
+      <a href="#" class="stat-link">Ver aniversariantes</a>
+    </div>
+  </div>
+
+  <!-- TWO COL LAYOUT -->
+  <div class="layout-two">
+    <div class="col-left">
+
+      <!-- AGENDA -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Agenda de hoje</span>
+          <a href="#" class="card-link" style="background: var(--prana-purple-muted); padding: 6px 14px; border-radius: 999px; font-size: 12px;">Ver agenda completa</a>
+        </div>
+        <div class="card-date">Quinta-feira, 03 de Junho</div>
+        <div class="agenda-list">
+          <div class="agenda-item">
+            <span class="agenda-time">08:00 – 09:00</span>
+            <span class="agenda-name">Pilates – Turma</span>
+            <span class="agenda-count">1 aluno</span>
+            <span class="agenda-tag">Confirmada</span>
+            <div class="avatar-stack">
+              <div class="av">MR</div>
+            </div>
+            <span class="agenda-arrow">›</span>
+          </div>
+          <div class="agenda-item">
+            <span class="agenda-time">10:00 – 11:00</span>
+            <span class="agenda-name">Yoga – Turma</span>
+            <span class="agenda-count">2 alunos</span>
+            <span class="agenda-tag">Confirmada</span>
+            <div class="avatar-stack">
+              <div class="av">MR</div>
+              <div class="av">LS</div>
+            </div>
+            <span class="agenda-arrow">›</span>
+          </div>
+          <div class="agenda-item">
+            <span class="agenda-time">14:00 – 15:00</span>
+            <span class="agenda-name">Pilates – Particular</span>
+            <span class="agenda-count">1 aluno</span>
+            <span class="agenda-tag">Confirmada</span>
+            <div class="avatar-stack">
+              <div class="av">LS</div>
+            </div>
+            <span class="agenda-arrow">›</span>
+          </div>
+        </div>
+        <a href="#" class="ver-semana">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Ver semana completa
+        </a>
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="bottom-row">
+        <!-- GRÁFICO -->
+        <div class="card">
+          <div class="card-title" style="margin-bottom: 4px;">Gráfico de presença (semana)</div>
+          <div class="chart-area">
+            <div class="bars" id="bars"></div>
+            <div style="display:flex; gap:8px; margin-top:6px; padding: 0 4px;">
+              <span style="flex:1; text-align:center; font-size:10px; color: var(--text-muted);">SEG</span>
+              <span style="flex:1; text-align:center; font-size:10px; color: var(--text-muted);">TER</span>
+              <span style="flex:1; text-align:center; font-size:10px; color: var(--text-muted);">QUA</span>
+              <span style="flex:1; text-align:center; font-size:10px; color: var(--text-muted);">QUI</span>
+              <span style="flex:1; text-align:center; font-size:10px; color: var(--text-muted);">SEX</span>
+              <span style="flex:1; text-align:center; font-size:10px; color: var(--text-muted);">SÁB</span>
+            </div>
+          </div>
+          <div class="chart-footer">
+            <a href="#" class="card-link" style="font-size:11px;">📊 Ver relatório completo</a>
+          </div>
+        </div>
+
+        <!-- NOVOS ALUNOS -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Novos alunos</span>
+            <a href="#" class="card-link">Ver todos</a>
+          </div>
+          <div style="margin-top: 8px;">
+            <div class="aluno-item">
+              <div class="aluno-avatar">MR</div>
+              <div class="aluno-info">
+                <div class="aluno-name">Marina Rocha</div>
+                <div class="aluno-date">Entrou em 20/05/2025</div>
+              </div>
+              <span class="aluno-arrow">›</span>
+            </div>
+            <div class="aluno-item">
+              <div class="aluno-avatar">LS</div>
+              <div class="aluno-info">
+                <div class="aluno-name">Lucas Santos</div>
+                <div class="aluno-date">Entrou em 28/05/2025</div>
+              </div>
+              <span class="aluno-arrow">›</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COL -->
+    <div class="col-right">
+
+      <!-- PRÓXIMAS AULAS -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Próximas aulas</span>
+          <a href="#" class="card-link">Ver agenda</a>
+        </div>
+        <div style="margin-top: 8px;">
+          <div class="proximas-item">
+            <div class="prox-date"><div class="day">03</div><div class="month">JUN</div></div>
+            <div><div class="prox-name">Pilates – Turma</div><div class="prox-time">08:00 – 09:00</div></div>
+            <span class="tag-conf">Confirmada</span>
+          </div>
+          <div class="proximas-item">
+            <div class="prox-date"><div class="day">03</div><div class="month">JUN</div></div>
+            <div><div class="prox-name">Yoga – Turma</div><div class="prox-time">10:00 – 11:00</div></div>
+            <span class="tag-conf">Confirmada</span>
+          </div>
+          <div class="proximas-item">
+            <div class="prox-date"><div class="day">03</div><div class="month">JUN</div></div>
+            <div><div class="prox-name">Pilates – Particular</div><div class="prox-time">14:00 – 15:00</div></div>
+            <span class="tag-conf">Confirmada</span>
+          </div>
+          <div class="proximas-item">
+            <div class="prox-date"><div class="day">04</div><div class="month">JUN</div></div>
+            <div><div class="prox-name">Pilates – Turma</div><div class="prox-time">08:00 – 09:00</div></div>
+            <span class="tag-conf">Confirmada</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</main>
+
+<script>
+  const data = [100, 50, 100, 100, 50, 0];
+  const container = document.getElementById('bars');
+  const maxH = 100;
+  data.forEach(pct => {
+    const col = document.createElement('div');
+    col.className = 'bar-col';
+    const label = document.createElement('span');
+    label.className = 'bar-pct';
+    label.textContent = pct + '%';
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.height = (pct / 100 * maxH) + 'px';
+    if (pct === 0) { bar.style.background = 'var(--border)'; label.style.visibility = 'hidden'; }
+    col.appendChild(label);
+    col.appendChild(bar);
+    container.appendChild(col);
+  });
+</script>
+</body>
+</html>

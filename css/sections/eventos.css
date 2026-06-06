@@ -1,0 +1,160 @@
+.eventos-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--bege) 0%, var(--roxo-bg) 100%);
+    border-radius: var(--radius);
+    border: 1px dashed rgba(107, 94, 168, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.eventos-empty::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 0%, rgba(107, 94, 168, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.eventos-empty-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--branco);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--roxo-light);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 20px rgba(107, 94, 168, 0.15);
+}
+
+.eventos-empty-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--verde);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+}
+
+.eventos-empty-title em {
+    font-style: italic;
+    color: var(--roxo);
+}
+
+.eventos-empty-desc {
+    font-size: 14px;
+    color: var(--texto-muted);
+    line-height: 1.7;
+    max-width: 400px;
+    margin-bottom: 2rem;
+}
+
+
+.eventos-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.eventos-tag {
+    padding: 6px 14px;
+    background: var(--branco);
+    border: 0.5px solid rgba(107, 94, 168, 0.2);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--texto-muted);
+    letter-spacing: 0.04em;
+}
+
+/* Grid de eventos futuros (oculto por padrão, mostra quando tiver eventos) */
+.eventos-grid {
+    display: none;
+    /* mude para grid quando tiver eventos */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.eventos-grid.tem-eventos {
+    display: grid;
+}
+
+.evento-card-foto {
+    height: 180px;
+    background: var(--bege-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.evento-card-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.evento-card-data .dia {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.evento-card-data .mes {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.evento-card-body {
+    padding: 1.25rem;
+}
+
+.evento-card-tipo {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--roxo-light);
+    margin-bottom: 6px;
+}
+
+.evento-card-nome {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--verde);
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+
+.evento-card-info {
+    font-size: 12px;
+    color: var(--texto-muted);
+    line-height: 1.5;
+}
+
+.eventos-email-nota {
+    font-size: 11px;
+    color: var(--texto-muted);
+    margin-top: 8px;
+    text-align: center;
+}
+
+.eventos-email-ok {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(92, 114, 77, 0.1);
+    border: 1px solid rgba(92, 114, 77, 0.25);
+    border-radius: 50px;
+    font-size: 13px;
+    color: var(--verde);
+    font-weight: 500;
+}

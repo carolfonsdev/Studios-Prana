@@ -1,0 +1,199 @@
+@media (max-width: 900px) {
+    nav {
+        padding: 0 1.5rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        height: auto;
+        min-height: calc(100vh - 68px);
+    }
+
+    .hero-bg-img {
+        display: block;
+        filter: blur(7px);
+        transform: scale(1.12);
+    }
+
+    .hero-fade {
+        display: block;
+        width: 100%;
+        background: rgba(247, 244, 239, 0.60);
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding: 4rem 2rem 5rem;
+        height: auto;
+        min-height: calc(100vh - 68px);
+    }
+
+    .hero-title {
+        font-size: clamp(40px, 9vw, 58px);
+    }
+
+
+    .sobre {
+        display: flex;
+        flex-direction: column;
+        padding: 3.5rem 1.5rem;
+        gap: 0;
+    }
+
+    .sobre-header-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .sobre-img {
+        width: 90px !important;
+        min-width: 90px !important;
+        height: 90px !important;
+        border-radius: 50% !important;
+        flex-shrink: 0;
+        order: 2;
+        box-shadow: 0 0 0 3px var(--bege), 0 0 0 5px var(--roxo-light);
+    }
+
+    .pilares {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 2.5rem 2rem;
+    }
+
+    .servicos,
+    .professora,
+    .planos,
+    .localizacao {
+        padding: 3.5rem 1.5rem;
+    }
+
+    .servicos-grid,
+    .planos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .professora,
+    .localizacao {
+        grid-template-columns: 1fr;
+    }
+
+    .planos-header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .sobre-diferenciais {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .footer-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    footer {
+        padding: 3rem 2rem 1.5rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .yoga-intro {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .yoga-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .beneficios-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .pilates-section,
+    .yoga-section,
+    .beneficios-section {
+        padding: 3.5rem 1.5rem;
+    }
+
+    .planos-tabs,
+    .yoga-tabs {
+        flex-wrap: wrap;
+    }
+
+    .opcoes-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .eventos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    
+}
+
+@media (max-width: 480px) {
+    .pilares {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        height: 58px;
+    }
+
+    .btn-nav {
+        width: 120px;
+        font-size: 60%;
+        padding: 10px 2px;
+    }
+
+
+    .hero-content {
+        padding: 3rem 1.5rem 4rem;
+        min-height: calc(100vh - 58px);
+    }
+
+    .beneficios-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-btns {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .btn-hero {
+        padding: 9px 16px;
+        font-size: 10.5px;
+        gap: 7px;
+    }
+
+    .btn-hero-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .btn-hero-icon svg {
+        width: 11px;
+        height: 11px;
+    }
+}

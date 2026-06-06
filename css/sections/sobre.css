@@ -1,0 +1,119 @@
+.sobre {
+    padding: 6rem 5rem;
+    background: var(--branco);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+.sobre-img {
+    border-radius: var(--radius);
+    overflow: hidden;
+    width: 300px;
+    min-width: 300px;
+    height: 420px;
+    background: var(--bege-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sobre-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.sobre-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--roxo-light);
+    margin-bottom: 1rem;
+}
+
+.sobre-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--verde);
+    margin-bottom: 1.5rem;
+}
+
+.sobre-title em {
+    font-style: italic;
+    color: var(--roxo);
+}
+
+.sobre-desc {
+    font-size: 14px;
+    color: var(--texto-muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.sobre-studio {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid rgba(0, 0, 0, 0.08);
+}
+
+.sobre-studio-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 1rem;
+}
+
+.sobre-diferenciais {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.diferencial {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.diferencial-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--verde);
+}
+
+.diferencial-desc {
+    font-size: 12px;
+    color: var(--texto-muted);
+    line-height: 1.5;
+}
+
+.prof-credenciais {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.credencial {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--texto-muted);
+}
+
+.credencial::before {
+    content: '✦';
+    color: var(--roxo-light);
+    font-size: 10px;
+}

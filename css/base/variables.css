@@ -1,0 +1,20 @@
+    :root {
+      --roxo: #6B5EA8;
+      --roxo-light: #9B8ED4;
+      --roxo-bg: #EEEDFE;
+
+      --verde: #5c724d;
+
+      --bege: #F7F4EF;
+      --bege-dark: #EDE8DF;
+
+      --texto: #2C2C2A;
+      --texto-muted: #7A7672;
+
+      --branco: #FFFFFF;
+
+      --radius: 16px;
+      
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }

@@ -1,0 +1,154 @@
+.login-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+}
+
+.login-overlay.open {
+    display: flex;
+}
+
+.login-modal {
+    background: var(--bege);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 380px;
+    max-width: 90vw;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+    animation: modalIn 0.25s ease;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--texto-muted);
+    padding: 4px;
+    border-radius: 6px;
+    transition: color 0.2s;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--texto);
+}
+
+.modal-logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+
+.modal-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--verde);
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+
+.agendar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.agendar-overlay.open {
+    display: flex;
+}
+
+.agendar-modal {
+    background: var(--bege);
+    border-radius: 24px;
+    width: 520px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.22);
+    animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.agendar-header {
+    padding: 2rem 2rem 1.25rem;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.07);
+    position: sticky;
+    top: 0;
+    background: var(--bege);
+    z-index: 1;
+    border-radius: 24px 24px 0 0;
+}
+
+.agendar-body {
+    padding: 1.75rem 2rem 2rem;
+}
+
+.agendar-footer {
+    padding: 0 2rem 2rem;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.login-modal {
+    background: var(--bege);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 380px;
+    max-width: 90vw;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+    animation: modalIn 0.25s ease;
+}
+
+
+.modal-logo .name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--verde);
+    display: block;
+}
+
+.modal-logo .sub {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--roxo-light);
+    text-transform: uppercase;
+}
+
+.modal-title em {
+    font-style: italic;
+    color: var(--roxo);
+}
+
+.modal-footer-text {
+    text-align: center;
+    font-size: 11px;
+    color: var(--texto-muted);
+    margin-top: 1rem;
+}
+
+.modal-footer-text a {
+    color: var(--roxo);
+    text-decoration: none;
+}
