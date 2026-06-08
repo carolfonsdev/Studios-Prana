@@ -1,4 +1,6 @@
 @media (max-width: 900px) {
+
+    /* ── NAV ── */
     nav {
         padding: 0 1.5rem;
         justify-content: space-between;
@@ -31,12 +33,14 @@
 
     .hero-fade {
         width: 100%;
-        background: linear-gradient(to right, var(--bege) 21%, transparent 120%);
+        background: linear-gradient(to right,
+                var(--bege) 21%,
+                transparent 120%);
     }
 
     .hero-content {
         max-width: 100%;
-        padding: 3rem 3rem 8rem;
+        padding: 3rem 2rem 8rem;
         height: auto;
         min-height: calc(100vh - 68px);
     }
@@ -47,13 +51,11 @@
         gap: 13px;
     }
 
-    /* Logo centralizada acima do título */
     .hero-logo-mobile {
         display: block;
         width: 80px;
     }
 
-    /* Título menor */
     .hero-title {
         font-size: clamp(28px, 8vw, 45px);
     }
@@ -110,7 +112,9 @@
         border-radius: 50% !important;
         flex-shrink: 0;
         order: 2;
-        box-shadow: 0 0 0 3px var(--bege), 0 0 0 5px var(--roxo-light);
+        box-shadow:
+            0 0 0 3px var(--bege),
+            0 0 0 5px var(--roxo-light);
     }
 
     /* ── PILARES ── */
@@ -202,7 +206,12 @@
     }
 }
 
+/* ============================================================
+   MOBILE PEQUENO
+   ============================================================ */
+
 @media (max-width: 700px) {
+
     .btn-nav {
         width: 150px;
         font-size: 70%;
