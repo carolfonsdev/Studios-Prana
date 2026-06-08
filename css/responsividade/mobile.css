@@ -202,15 +202,9 @@
 }
 
 @media (max-width: 700px) {
-
-    nav {
-        height: 58px;
-    }
-
     .btn-nav {
-        width: 120px;
-        font-size: 60%;
-        padding: 10px 2px;
+        width: 150px;
+        font-size: 70%;
     }
 
     .hero-content {

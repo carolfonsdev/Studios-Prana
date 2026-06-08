@@ -5,13 +5,13 @@ nav {
     right: 0;
     z-index: 100;
     background: rgba(247, 244, 239, 0.92);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(2px);
     border-bottom: 0.5px solid rgba(107, 94, 168, 0.15);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 2.5rem;
-    height: 68px;
+    height: 80px;
 }
 
 .nav-logo {
