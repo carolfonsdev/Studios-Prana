@@ -23,6 +23,7 @@
         min-height: calc(100vh - 68px);
     }
 
+    /* Sem blur na imagem */
     .hero-bg-img {
         display: block;
         filter: none;
@@ -192,6 +193,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
+}
 
     footer {
         padding: 3rem 2rem 1.5rem;
