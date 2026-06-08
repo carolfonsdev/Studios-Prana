@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prana Studios — Equilíbrio que transforma</title>
+  <title>Studios Prana — Equilíbrio que transforma</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -15,20 +15,30 @@
 
 <body>
 
-  <!-- NAV -->
+  <!-- ── NAV ── -->
   <nav>
+    <button class="btn-menu" onclick="abrirDrawer()" aria-label="Abrir menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+
     <img src="imagens/logo-horiz.png" alt="Prana Studios" style="width:140px;">
+
     <ul class="nav-links">
-      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#inicio">Início</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#pilates">Pilates</a></li>
       <li><a href="#yoga">Yoga</a></li>
       <li><a href="#beneficios">Benefícios</a></li>
     </ul>
+
     <div class="nav-right">
       <button class="btn-nav" onclick="abrirAgendar()">Veja Disponibilidades</button>
       <button class="btn-login" onclick="document.getElementById('loginOverlay').classList.add('open')"
-        aria-label="Área do professor">
+        aria-label="Área da professora">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
           stroke-linecap="round">
           <circle cx="12" cy="8" r="4" />
@@ -39,7 +49,25 @@
     </div>
   </nav>
 
-  <!-- MODAL LOGIN -->
+  <div class="nav-drawer" id="navDrawer">
+    <div class="drawer-backdrop" onclick="fecharDrawer()"></div>
+    <div class="drawer-panel">
+      <button class="drawer-close" onclick="fecharDrawer()" aria-label="Fechar menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <a href="#inicio" onclick="fecharDrawer()">Início</a>
+      <a href="#sobre" onclick="fecharDrawer()">Sobre</a>
+      <a href="#pilates" onclick="fecharDrawer()">Pilates</a>
+      <a href="#yoga" onclick="fecharDrawer()">Yoga</a>
+      <a href="#beneficios" onclick="fecharDrawer()">Benefícios</a>
+    </div>
+  </div>
+
+
+  <!-- ── MODAL LOGIN ── -->
   <div class="login-overlay" id="loginOverlay" onclick="if(event.target===this) this.classList.remove('open')">
     <div class="login-modal">
       <button class="modal-close" onclick="document.getElementById('loginOverlay').classList.remove('open')">✕</button>
@@ -56,14 +84,12 @@
         <label>Senha</label>
         <input type="password" placeholder="••••••••">
       </div>
-      <button class="btn-login-submit" onclick="loginProfessora()">
-        Entrar no painel
-      </button>
+      <button class="btn-login-submit" onclick="loginProfessora()">Entrar no painel</button>
       <p class="modal-footer-text"><a href="#">Esqueci minha senha</a></p>
     </div>
   </div>
 
-  <!-- MODAL AGENDAMENTO -->
+  <!-- ── MODAL AGENDAMENTO ── -->
   <div class="agendar-overlay" id="agendarOverlay" onclick="if(event.target===this) fecharAgendar()">
     <div class="agendar-modal">
       <div class="agendar-header">
@@ -77,19 +103,25 @@
     </div>
   </div>
 
-  <!-- HERO -->
+  <!-- ── HERO ── -->
   <section class="hero" id="inicio">
-    <img src="imagens/Design sem nome2.png" class="hero-bg-img" alt="Prana Studios">
+    <img src="imagens/Design sem nome2.png" class="hero-bg-img" alt="Studios Prana">
     <div class="hero-fade"></div>
     <div class="hero-content">
-      <h1 class="hero-title">
-        Equilíbrio que
-        <em>transforma.</em>
-      </h1>
+
+      <div class="hero-header">
+        <img src="imagens/logo-img.png" alt="Prana Studios" class="hero-logo-mobile">
+
+        <h1 class="hero-title">
+          Equilíbrio
+          <em> que transforma.</em>
+        </h1>
+      </div>
       <p class="hero-sub">
         Pilates para cuidar do corpo,<br>
         acalmar a mente e energizar a vida.
       </p>
+
       <div class="hero-btns">
         <a href="#pilates" class="btn-hero btn-hero-pilates">
           <span class="btn-hero-icon">
@@ -101,7 +133,7 @@
         </a>
         <a href="#yoga" class="btn-hero btn-hero-yoga">
           <span class="btn-hero-icon">
-            <img src="imagens/yoga.png" alt="yoga" style="width: 12px; display: flex; margin-bottom: 2px;">
+            <img src="imagens/yoga.png" alt="" style="width:12px;">
           </span>
           Planos de Yoga
         </a>
@@ -109,35 +141,36 @@
     </div>
   </section>
 
-  <!-- SOBRE -->
+  <!-- ── SOBRE ── -->
   <section class="sobre" id="sobre">
     <div class="sobre-header-mobile">
       <div class="sobre-img reveal">
-        <img src="imagens/instrutora.png" alt="">
+        <img src="imagens/instrutora.png" alt="Professora">
       </div>
     </div>
     <div class="reveal">
       <p class="section-eyebrow">A professora</p>
       <h2 class="sobre-title">Movimento e cuidado<br><em>com propósito.</em></h2>
       <p class="sobre-desc">
-        Com formação em Yoga e dedicação ao Pilates, oferece aulas pensadas para o seu momento, respeitando seus limites e evoluindo no seu ritmo. O foco é você.
+        Com formação em Yoga e dedicação ao Pilates, oferece aulas pensadas para o seu momento, respeitando seus limites
+        e evoluindo no seu ritmo. O foco é você.
       </p>
       <div class="prof-credenciais">
         <span class="credencial">Instrutora MAT Pilates e Aparelhos</span>
         <span class="credencial">Instrutora de Yoga: Hatha Yoga, Vinyasa Yoga, Yoga Kids e Yoga para Gestantes</span>
-        <span class="credencial">Graduada em Educação Física (Lincenciatura Plena)</span>
+        <span class="credencial">Graduada em Educação Física (Licenciatura Plena)</span>
         <span class="credencial">Pós-Graduação Internacional em Pilates para Reabilitação e Grupos Especiais</span>
       </div>
       <div class="sobre-studio">
         <p class="sobre-studio-title">O studio</p>
         <p class="sobre-desc">No Studios Prana, acreditamos que o movimento consciente é uma ponte para uma vida mais
           leve, saudável e equilibrada. Unimos profissionalismo, acolhimento e propósito em cada detalhe.</p>
-        <p style="font-size:13px;color:var(--texto-muted);">📍 Rua Araguaia 1763 · Sala 734 · 6° andar</p>
+        <p class="sobre-endereco">📍 Rua Araguaia 1763 · Sala 734 · 6° andar</p>
       </div>
     </div>
   </section>
 
-  <!-- PILATES -->
+  <!-- ── PILATES ── -->
   <section class="pilates-section" id="pilates">
     <div class="section-header reveal">
       <p class="section-eyebrow">Pilates</p>
@@ -151,6 +184,7 @@
         <button class="plano-tab" onclick="showTab('pilates','trimestral',this)">Trimestral</button>
         <button class="plano-tab" onclick="showTab('pilates','semestral',this)">Semestral</button>
       </div>
+
       <div class="planos-panel active" id="pilates-mensal">
         <table class="planos-table">
           <thead>
@@ -184,6 +218,7 @@
         </table>
         <p class="planos-nota">* Plano mensal com mais flexibilidade — renovação mês a mês.</p>
       </div>
+
       <div class="planos-panel" id="pilates-trimestral">
         <table class="planos-table">
           <thead>
@@ -217,6 +252,7 @@
         </table>
         <p class="planos-nota">* Plano trimestral com condições especiais — compromisso de 3 meses.</p>
       </div>
+
       <div class="planos-panel" id="pilates-semestral">
         <table class="planos-table">
           <thead>
@@ -253,33 +289,35 @@
     </div>
   </section>
 
-  <!-- YOGA -->
+  <!-- ── YOGA ── -->
   <section class="yoga-section" id="yoga">
     <div class="yoga-intro">
       <div class="reveal">
         <p class="section-eyebrow">Yoga</p>
         <h2 class="section-title">Personal Yoga —<br><em>atenção total a você.</em></h2>
         <p class="yoga-desc">Aulas de yoga personalizadas para seus objetivos, sua rotina e seu momento de vida.
-          Equilíbrio no corpo, leveza na mente. Transformação todos os dias.</p>
+          Equilíbrio no corpo, leveza na mente.</p>
         <div class="yoga-destaques">
-          <span class="yoga-destaque">Desconto progressivo para comprometimento mensal</span>
-          <span class="yoga-destaque">Yoga para Gestantes — especialidade premium</span>
+          <span class="yoga-destaque">Yoga para Gestantes — especialidade da professora</span>
           <span class="yoga-destaque">Yoga Kids — ideal para famílias</span>
-          <span class="yoga-destaque">Aulas em dupla — opção flexível e social</span>
+          <span class="yoga-destaque">Aulas em grupo — opção flexível e social</span>
+          <span class="yoga-destaque">Valores personalizados · A combinar</span>
         </div>
       </div>
     </div>
+
     <div class="reveal">
       <div class="yoga-tabs">
-        <button class="yoga-tab active" onclick="showYogaTab('yoga-valores',this)">Valores</button>
+        <button class="yoga-tab active" onclick="showYogaTab('yoga-valores',this)">Modalidades</button>
         <button class="yoga-tab" onclick="showYogaTab('yoga-eventos',this)">Eventos &amp; Retiros</button>
       </div>
 
+      <!-- MODALIDADES -->
       <div class="yoga-panel active" id="yoga-valores">
         <div class="yoga-grid">
           <div class="yoga-card">
             <p class="yoga-card-title">
-              <img src="imagens/person.png" alt="person" style="width: 10px;">
+              <img src="imagens/person.png" alt="" style="width:10px;">
               Yoga Particular
             </p>
             <table>
@@ -299,7 +337,7 @@
           </div>
           <div class="yoga-card">
             <p class="yoga-card-title">
-              <img src="imagens/group.png" alt="" style="width: 10px;">
+              <img src="imagens/group.png" alt="" style="width:10px;">
               Yoga em Grupo
             </p>
             <table>
@@ -318,16 +356,12 @@
             </table>
           </div>
         </div>
-        <p style="font-size:12px;color:var(--texto-muted);margin-top:1.25rem;font-style:italic;">
-          * Valores personalizados conforme modalidade, frequência e número de participantes. Entre em contato para
-          saber mais.
-        </p>
+        <p class="yoga-nota">* Valores personalizados conforme modalidade, frequência e número de participantes. Entre
+          em contato para saber mais.</p>
       </div>
 
-      <!-- EVENTOS & RETIROS — estado vazio + estrutura para eventos futuros -->
+      <!-- EVENTOS & RETIROS -->
       <div class="yoga-panel" id="yoga-eventos">
-
-        <!-- Estado vazio (visível enquanto não houver eventos) -->
         <div class="eventos-empty" id="eventosEmpty">
           <div class="eventos-empty-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
@@ -340,9 +374,7 @@
           </div>
           <h3 class="eventos-empty-title">Em breve,<br><em>experiências incríveis.</em></h3>
           <p class="eventos-empty-desc">Nossos eventos e retiros estão sendo preparados com muito carinho. Deixe seu
-            e-mail e você será a primeira a saber quando tiver novidades!</p>
-
-          <!-- Formulário de aviso por e-mail -->
+            e-mail e você será a primeira a saber!</p>
           <div class="eventos-email-form" id="eventosEmailForm">
             <div class="eventos-email-input-wrap">
               <input type="email" id="eventosEmailInput" class="eventos-email-input" placeholder="seu@email.com">
@@ -355,15 +387,12 @@
             </div>
             <p class="eventos-email-nota">Sem spam. Só as novidades que importam 🌿</p>
           </div>
-
-          <!-- Confirmação após envio -->
           <div class="eventos-email-ok" id="eventosEmailOk" style="display:none;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M20 6L9 17l-5-5" />
             </svg>
             Anotado! Você será avisada em primeira mão 🙏
           </div>
-
           <div class="eventos-tags">
             <span class="eventos-tag">🏕️ Retiros de fim de semana</span>
             <span class="eventos-tag">🧘 Aulas especiais em grupo</span>
@@ -372,9 +401,8 @@
           </div>
         </div>
 
-        <!-- Grid de eventos (oculto agora — remova a style="display:none" e adicione a classe tem-eventos quando tiver eventos) -->
+        <!-- Grid de eventos — remova display:none e adicione classe tem-eventos quando houver eventos -->
         <div class="eventos-grid" id="eventosGrid" style="display:none;">
-          <!-- Exemplo de card de evento — duplique para adicionar mais -->
           <div class="evento-card-novo">
             <div class="evento-card-foto">
               <img src="" alt="Retiro de Yoga">
@@ -391,68 +419,70 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- BENEFÍCIOS -->
+  <!-- ── BENEFÍCIOS ── -->
   <section class="beneficios-section" id="beneficios">
     <div class="beneficios-header reveal">
-      <h2 class="beneficios-title">Por que escolher<br><em>o Prana Studios?</em></h2>
+      <h2 class="beneficios-title">Por que escolher<br><em>o Studios Prana?</em></h2>
     </div>
     <div class="beneficios-grid">
       <div class="beneficio reveal">
-        <div class="beneficio-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.5">
+        <div class="beneficio-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path
               d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg></div>
+          </svg>
+        </div>
         <p class="beneficio-title">Atendimento personalizado</p>
         <p class="beneficio-desc">Você é única. Seu treino também é. Cada aula pensada para o seu corpo e momento.</p>
       </div>
       <div class="beneficio reveal">
-        <div class="beneficio-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.5">
+        <div class="beneficio-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-          </svg></div>
+          </svg>
+        </div>
         <p class="beneficio-title">Resultados reais</p>
         <p class="beneficio-desc">Para corpo e mente. Força, flexibilidade, equilíbrio e bem-estar que você vai sentir.
         </p>
       </div>
       <div class="beneficio reveal">
-        <div class="beneficio-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.5">
+        <div class="beneficio-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
             <polyline points="9 22 9 12 15 12 15 22" />
-          </svg></div>
+          </svg>
+        </div>
         <p class="beneficio-title">Ambiente acolhedor</p>
         <p class="beneficio-desc">Espaço climatizado, cuidado e pensado para o seu bem-estar e tranquilidade.</p>
       </div>
       <div class="beneficio reveal">
-        <div class="beneficio-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.5">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+        <div class="beneficio-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
             <line x1="16" y1="2" x2="16" y2="6" />
             <line x1="8" y1="2" x2="8" y2="6" />
             <line x1="3" y1="10" x2="21" y2="10" />
-          </svg></div>
+          </svg>
+        </div>
         <p class="beneficio-title">Flexibilidade de horários</p>
         <p class="beneficio-desc">Horários pensados para encaixar na sua rotina e facilitar sua constância.</p>
       </div>
     </div>
   </section>
 
-  <!-- LOCALIZAÇÃO -->
+  <!-- ── LOCALIZAÇÃO ── -->
   <section class="localizacao" id="localizacao">
     <div class="loc-content reveal">
       <p class="loc-eyebrow">Localização</p>
       <h2 class="loc-title">Um lugar para<br>se <em>reconectar.</em></h2>
       <p class="loc-address">
         Rua Araguaia, 1763<br>
-        Sala 734 — 6° andar<br><br>
+        Sala 734 — 6° andar
       </p>
-      <!-- Ver no mapa: abre Google Maps com rota para o endereço -->
       <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Araguaia,+1763,+Rio+de+Janeiro,+RJ"
         target="_blank" rel="noopener" class="btn-mapa">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -465,13 +495,13 @@
     <div class="loc-map reveal">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.4744946246574!2d-43.3314837!3d-22.932745999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd820514ac773%3A0x2c5edb3a5655ba79!2sUpside%20Araguaia!5e0!3m2!1spt-BR!2sbr!4v1779036798841!5m2!1spt-BR!2sbr"
-        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+        width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
@@ -479,16 +509,16 @@
         <span class="tagline">Equilíbrio que transforma.</span>
         <p>Pilates · Yoga · Bem-estar<br>Rio de Janeiro, RJ</p>
         <div class="social-links">
-          <!-- Instagram -->
-          <a class="social-link" href="https://instagram.com/studiosprana" target="_blank" aria-label="Instagram">
+          <a class="social-link" href="https://instagram.com/studiosprana" target="_blank" rel="noopener"
+            aria-label="Instagram">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="2" y="2" width="20" height="20" rx="5" />
               <circle cx="12" cy="12" r="4" />
               <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
             </svg>
           </a>
-          <!-- WhatsApp -->
-          <a class="social-link" href="https://wa.me/5521966268540" target="_blank" aria-label="WhatsApp">
+          <a class="social-link" href="https://wa.me/5521966268540" target="_blank" rel="noopener"
+            aria-label="WhatsApp">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path
                 d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -496,7 +526,6 @@
           </a>
         </div>
       </div>
-
       <div class="footer-col">
         <p class="footer-col-title">Serviços</p>
         <ul>
@@ -505,7 +534,6 @@
           <li><a href="#pilates">Turmas de Pilates</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <p class="footer-col-title">Studio</p>
         <ul>
@@ -514,13 +542,11 @@
           <li><a href="#localizacao">Localização</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <p class="footer-col-title">Contato</p>
         <ul>
           <li><a href="https://wa.me/5521966268540">(21) 96626-8540</a></li>
-          <li><a href="mailto:contato@studiosprana.com.br">contato@studiosprana.com.br</a></li>
-          <li><a href="https://instagram.com/studiosprana" target="_blank">@studiosprana</a></li>
+          <li><a href="https://instagram.com/studiosprana" target="_blank" rel="noopener">@studiosprana</a></li>
         </ul>
       </div>
     </div>
@@ -529,6 +555,7 @@
       <p>Feito com cuidado ♡</p>
     </div>
   </footer>
+
   <script src="script.js"></script>
 </body>
 
