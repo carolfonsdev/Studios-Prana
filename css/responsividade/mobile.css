@@ -193,7 +193,6 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
-}
 
     footer {
         padding: 3rem 2rem 1.5rem;
