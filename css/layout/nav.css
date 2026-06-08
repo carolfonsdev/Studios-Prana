@@ -26,9 +26,7 @@ nav {
     height: 38px;
 }
 
-.logo-text {
-    line-height: 1;
-}
+.logo-text { line-height: 1; }
 
 .logo-text .name {
     font-family: var(--font-display);
@@ -62,9 +60,7 @@ nav {
     transition: color 0.2s;
 }
 
-.nav-links a:hover {
-    color: var(--roxo);
-}
+.nav-links a:hover { color: var(--roxo); }
 
 .nav-right {
     display: flex;
@@ -72,6 +68,7 @@ nav {
     gap: 10px;
 }
 
+/* Botão login */
 .btn-login {
     width: 38px;
     height: 38px;
@@ -124,4 +121,83 @@ nav {
     right: 12px;
     border: 5px solid transparent;
     border-bottom-color: var(--verde);
+}
+
+/* ── Botão hamburguer (só aparece no mobile) ── */
+.btn-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--roxo);
+    padding: 4px;
+}
+
+.btn-menu svg { width: 24px; height: 24px; }
+
+/* ── Drawer mobile ── */
+.nav-drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+}
+
+.nav-drawer.open { display: block; }
+
+.drawer-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.drawer-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 72vw;
+    max-width: 280px;
+    background: var(--bege);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+    animation: slideIn 0.22s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(0); }
+}
+
+.drawer-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--texto-muted);
+    margin-bottom: 1rem;
+}
+
+.drawer-close svg { width: 20px; height: 20px; }
+
+.drawer-panel a {
+    font-family: PingFang TC;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--texto-muted);
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+    transition: color 0.2s;
+}
+
+.drawer-panel a:hover { color: var(--roxo); }
+
+.drawer-panel .btn-nav {
+    margin-top: 1.5rem;
+    width: 100%;
+    text-align: center;
 }

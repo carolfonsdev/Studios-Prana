@@ -18,6 +18,10 @@
     z-index: 0;
 }
 
+.hero-logo-mobile {
+  display: none;
+}
+
 .hero-fade {
     position: absolute;
     top: 0;
@@ -67,6 +71,7 @@
 /* ── HERO BUTTONS — redesign elegante ── */
 .hero-btns {
     display: flex;
+    flex-direction: row;
     gap: 14px;
     flex-wrap: wrap;
 }
