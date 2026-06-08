@@ -271,8 +271,9 @@
     }
 
     .plano-tab {
-        padding: 1px 4px;
+        padding: 10px 4px;
         font-size: 10px;
+        letter-spacing: 0.05em;
         text-align: center;
     }
 
