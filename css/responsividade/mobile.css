@@ -6,7 +6,6 @@
         justify-content: space-between;
     }
 
-    /* Esconde logo e links — só mostra ☰ e botão login */
     nav>img,
     nav .nav-logo,
     .nav-links {
@@ -23,7 +22,6 @@
         min-height: calc(100vh - 68px);
     }
 
-    /* Sem blur na imagem */
     .hero-bg-img {
         display: block;
         filter: none;
@@ -192,6 +190,12 @@
     .footer-top {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 2rem 1.5rem;
+    }
+
+    /* Brand ocupa largura toda */
+    .footer-brand {
+        grid-column: 1 / -1;
     }
 
     footer {
@@ -229,7 +233,52 @@
         grid-template-columns: 1fr 1fr;
     }
 
+    /* ── FOOTER mobile pequeno ── */
+    footer {
+        padding: 2.5rem 1.25rem 1.5rem;
+    }
+
     .footer-top {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem 1.25rem;
+    }
+
+    /* Brand ainda ocupa tudo no topo */
+    .footer-brand {
+        grid-column: 1 / -1;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Serviços e Studio lado a lado */
+    .footer-col:nth-child(2) { grid-column: 1; }
+    .footer-col:nth-child(3) { grid-column: 2; }
+
+    /* Contato ocupa linha inteira embaixo */
+    .footer-col:nth-child(4) { grid-column: 1 / -1; }
+
+    /* Tabs Pilates — 3 colunas iguais */
+    .planos-tabs {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .plano-tab {
+        padding: 10px 4px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    /* Tabs Yoga — 2 colunas iguais */
+    .yoga-tabs {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .yoga-tab {
+        padding: 10px 8px;
+        font-size: 11px;
+        text-align: center;
     }
 }

@@ -281,7 +281,7 @@
     position: relative;
 }
 
-.horario-btn:hover:not(.indisponivel) {
+.horario-btn:hover:not(.indisponivel):not(.selected) {
     border-color: var(--roxo);
     color: var(--roxo);
 }
@@ -336,7 +336,7 @@
     height: 100%;
 }
 
-.opcao-btn:hover {
+.opcao-btn:hover:not(.selected) {
     border-color: var(--roxo);
     background: var(--roxo-bg);
 }
@@ -365,4 +365,238 @@
 .btn-nav:hover {
     background: #5a4f93;
     transform: translateY(-1px);
+}
+
+/* ── Tabs de período (Mensal / Trimestral / Semestral) no modal ── */
+.plano-periodo-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.25rem;
+    border: 0.5px solid rgba(107, 94, 168, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    width: fit-content;
+    background: transparent;
+}
+
+.plano-periodo-btn {
+    padding: 10px 22px;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    background: transparent;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--texto-muted);
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.plano-periodo-btn:hover {
+    color: var(--roxo);
+    background: rgba(107, 94, 168, 0.06);
+}
+
+.plano-periodo-btn.active {
+    background: var(--roxo);
+    color: #fff;
+}
+
+/* ── Botões de seleção de plano/preço no modal de agendamento ── */
+.agendar-plano-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid rgba(107, 94, 168, 0.18);
+    border-radius: 14px;
+    background: var(--branco);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+    text-align: left;
+    gap: 12px;
+}
+
+.agendar-plano-btn:hover {
+    border-color: var(--roxo);
+    background: var(--roxo-bg, rgba(107, 94, 168, 0.06));
+}
+
+.agendar-plano-btn.selected {
+    border-color: var(--roxo);
+    background: var(--roxo);
+    color: #fff;
+}
+
+.agendar-plano-btn .plano-btn-label {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.agendar-plano-btn .plano-btn-preco {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.85;
+    white-space: nowrap;
+}
+
+/* ── Frequência selecionável (grid de frequências no modal) ── */
+.freq-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 14px 10px;
+    border: 1.5px solid rgba(107, 94, 168, 0.18);
+    border-radius: 14px;
+    background: var(--branco);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+    text-align: center;
+}
+
+.freq-btn:hover {
+    border-color: var(--roxo);
+    background: var(--roxo-bg, rgba(107, 94, 168, 0.06));
+    color: var(--roxo);
+}
+
+.freq-btn.selected {
+    border-color: var(--roxo);
+    background: var(--roxo);
+    color: #fff;
+}
+
+.freq-btn .freq-vezes {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.freq-btn .freq-label {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.75;
+}
+
+.freq-btn .freq-preco {
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+}
+/* ── Cards de plano/frequência no modal de agendamento ── */
+.plano-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.plano-opcao {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1.5px solid rgba(107, 94, 168, 0.18);
+    border-radius: 14px;
+    background: var(--branco);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.plano-opcao:hover:not(.selected) {
+    border-color: var(--roxo);
+}
+
+.plano-opcao.selected {
+    border-color: var(--roxo);
+    background: var(--roxo);
+    color: #fff;
+}
+
+.plano-opcao-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(107, 94, 168, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    color: transparent;
+    transition: all 0.2s;
+}
+
+.plano-opcao.selected .plano-opcao-check {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: transparent;
+    color: #fff;
+}
+
+.plano-opcao-info {
+    flex: 1;
+}
+
+.plano-opcao-nome {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    line-height: 1.2;
+}
+
+.plano-opcao-detalhe {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.65;
+    margin-top: 2px;
+    font-family: var(--font-body);
+}
+
+.plano-opcao.selected .plano-opcao-detalhe {
+    opacity: 0.8;
+}
+
+.plano-opcao-preco {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    white-space: nowrap;
+    color: var(--roxo);
+    transition: color 0.2s;
+}
+
+.plano-opcao.selected .plano-opcao-preco {
+    color: #fff;
+}
+
+.plano-popular-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--verde);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    padding: 4px 10px;
+    border-radius: 0 12px 0 10px;
+}
+
+.plano-opcao.selected .plano-popular-badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
 }
