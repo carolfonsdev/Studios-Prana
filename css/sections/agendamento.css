@@ -43,6 +43,9 @@
     line-height: 1.2;
 }
 
+.agendar-nota {
+    margin-bottom: 1rem;
+}
 .agendar-title em {
     font-style: italic;
     color: var(--roxo);
