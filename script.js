@@ -1,3 +1,7 @@
+const CONFIG = {
+  whatsapp: '5521966268540', // Substitua pelo número real (com DDD, sem espaços ou traços)
+};
+
 const PILATES_HORARIOS = ['15:00', '16:00', '17:00', '18:00', '19:00'];
 
 // Adicione ou remova horários aqui para bloquear vagas
