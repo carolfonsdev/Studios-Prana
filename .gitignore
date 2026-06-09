@@ -1,1 +1,5 @@
+# Sistema
 .DS_Store
+
+# Configuração sensível
+config.js
