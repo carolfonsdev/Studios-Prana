@@ -101,6 +101,7 @@
     font-size: 13px;
     color: var(--texto-muted);
     line-height: 1.7;
+    margin-bottom: 25px;
 }
 
 .dados-resumo strong {

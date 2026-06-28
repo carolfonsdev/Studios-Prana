@@ -4,8 +4,9 @@
     margin-bottom: 2rem;
     border: 0.5px solid rgba(107, 94, 168, 0.2);
     border-radius: 12px;
-    overflow: hidden;
+    overflow: visible;        /* ← era hidden */
     width: fit-content;
+    position: relative;       /* ← adicionar */
 }
 
 .plano-tab {
@@ -25,6 +26,7 @@
 .plano-tab.active {
     background: var(--roxo);
     color: #fff;
+    border-radius: 12px;     /* ← adicionar */
 }
 
 .yoga-tabs {

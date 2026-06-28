@@ -36,7 +36,7 @@
     </ul>
 
     <div class="nav-right">
-      <button class="btn-nav" onclick="abrirAgendar()">Veja Disponibilidades</button>
+      <button class="btn-nav" onclick="abrirAgendar()">Veja horários disponíveis</button>
       <button class="btn-login" onclick="document.getElementById('loginOverlay').classList.add('open')"
         aria-label="Área da professora">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -182,8 +182,9 @@
       <div class="planos-tabs">
         <button class="plano-tab active" onclick="showTab('pilates','mensal',this)">Mensal</button>
         <button class="plano-tab" onclick="showTab('pilates','trimestral',this)">Trimestral</button>
-        <button class="plano-tab" onclick="showTab('pilates','semestral',this)">Semestral</button>
+        <button class="plano-tab plano-tab-popular" onclick="showTab('pilates','semestral',this)">Semestral ✦</button>
       </div>
+      <p class="planos-popular-nota">✦ plano mais popular</p>
 
       <div class="planos-panel active" id="pilates-mensal">
         <table class="planos-table">
@@ -230,23 +231,23 @@
           <tbody>
             <tr>
               <td>1x por semana</td>
-              <td class="preco">R$ 170</td>
+              <td class="preco">R$ 170 <span class="economia">você economiza R$ 30 no trimestre</span></td>
             </tr>
             <tr>
               <td>2x por semana</td>
-              <td class="preco">R$ 275</td>
+              <td class="preco">R$ 275 <span class="economia">você economiza R$ 45 no trimestre</span></td>
             </tr>
             <tr>
               <td>3x por semana</td>
-              <td class="preco">R$ 370</td>
+              <td class="preco">R$ 370 <span class="economia">você economiza R$ 60 no trimestre</span></td>
             </tr>
             <tr>
               <td>4x por semana</td>
-              <td class="preco">R$ 455</td>
+              <td class="preco">R$ 455 <span class="economia">você economiza R$ 75 no trimestre</span></td>
             </tr>
             <tr>
               <td>5x por semana</td>
-              <td class="preco">R$ 530</td>
+              <td class="preco">R$ 530 <span class="economia">você economiza R$ 90 no trimestre</span></td>
             </tr>
           </tbody>
         </table>
@@ -264,23 +265,23 @@
           <tbody>
             <tr>
               <td>1x por semana</td>
-              <td class="preco">R$ 160</td>
+              <td class="preco">R$ 160 <span class="economia">você economiza R$ 120 no semestre</span></td>
             </tr>
             <tr>
               <td>2x por semana</td>
-              <td class="preco">R$ 255</td>
+              <td class="preco">R$ 255 <span class="economia">você economiza R$ 210 no semestre</span></td>
             </tr>
             <tr>
               <td>3x por semana</td>
-              <td class="preco">R$ 345</td>
+              <td class="preco">R$ 345 <span class="economia">você economiza R$ 270 no semestre</span></td>
             </tr>
             <tr>
               <td>4x por semana</td>
-              <td class="preco">R$ 430</td>
+              <td class="preco">R$ 430 <span class="economia">você economiza R$ 300 no semestre</span></td>
             </tr>
             <tr>
               <td>5x por semana</td>
-              <td class="preco">R$ 499</td>
+              <td class="preco">R$ 499 <span class="economia">você economiza R$ 366 no semestre</span></td>
             </tr>
           </tbody>
         </table>
