@@ -5,7 +5,7 @@ const CONFIG = {
 const PILATES_HORARIOS = ['15:00', '16:00', '17:00', '18:00', '19:00'];
 
 // Adicione ou remova horários aqui para bloquear vagas
-const HORARIOS_LOTADOS = [];
+const HORARIOS_LOTADOS = ['16:00'];
 
 const PLANOS_PILATES = {
   mensal: [
