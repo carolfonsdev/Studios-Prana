@@ -568,7 +568,7 @@ function montarMensagem() {
   const obsLinha = state.obs ? `*Observações:* ${state.obs}\n` : '';
 
   return [
-    `Olá! Tenho interesse em agendar uma aula no Studios Prana 💜\n`,
+    `Olá! Tenho interesse em agendar uma aula no Studios Prana \n`,
     `*Nome:* ${state.nome || 'Não informado'}`,
     `*Atividade:* ${atividade}`,
     pessoasLinha,
@@ -597,8 +597,8 @@ function enviarAvisoEvento() {
     return;
   }
 
-  const msg = `Olá! Quero ser avisada sobre eventos e retiros do Studios Prana 💜\n\nMeu e-mail: ${email}`;
-  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+  const msg = `Olá! Quero ser avisada sobre eventos e retiros do Studios Prana\n\nMeu e-mail: ${email}`;
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURI(msg)}`, '_blank');
 
   document.getElementById('eventosEmailForm').style.display = 'none';
   document.getElementById('eventosEmailOk').style.display = 'flex';
