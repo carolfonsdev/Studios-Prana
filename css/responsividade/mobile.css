@@ -281,4 +281,26 @@
         font-size: 11px;
         text-align: center;
     }
+
+    .plataformas-opcoes {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.plataformas-opcoes .plano-opcao {
+    width: 100%;
+    max-width: 100%;
+}
+
+ .plano-periodo-tabs {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .plano-periodo-btn {
+        width: 100%;
+        white-space: nowrap;
+        padding: 10px 6px;
+    }
 }
