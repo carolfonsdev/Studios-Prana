@@ -36,7 +36,7 @@
     </ul>
 
     <div class="nav-right">
-      <button class="btn-nav" onclick="abrirAgendar()">Veja Disponibilidades</button>
+      <button class="btn-nav" onclick="abrirAgendar()">Veja horários disponíveis</button>
       <button class="btn-login" onclick="document.getElementById('loginOverlay').classList.add('open')"
         aria-label="Área da professora">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -105,7 +105,7 @@
 
   <!-- ── HERO ── -->
   <section class="hero" id="inicio">
-    <img src="imagens/Design sem nome2.png" class="hero-bg-img" alt="Studios Prana">
+    <img src="imagens/ChatGPT Image 28 de jun. de 2026, 16_39_05.png" class="hero-bg-img" alt="Studios Prana">
     <div class="hero-fade"></div>
     <div class="hero-content">
 
@@ -150,7 +150,7 @@
     </div>
     <div class="reveal">
       <p class="section-eyebrow">A professora</p>
-      <h2 class="sobre-title">Movimento e cuidado<br><em>com propósito.</em></h2>
+      <h2 class="sobre-title">Movimento e cuidado<br><em>com propósito.</em></h2> 
       <p class="sobre-desc">
         Com formação em Yoga e dedicação ao Pilates, oferece aulas pensadas para o seu momento, respeitando seus limites
         e evoluindo no seu ritmo. O foco é você.
@@ -165,7 +165,7 @@
         <p class="sobre-studio-title">O studio</p>
         <p class="sobre-desc">No Studios Prana, acreditamos que o movimento consciente é uma ponte para uma vida mais
           leve, saudável e equilibrada. Unimos profissionalismo, acolhimento e propósito em cada detalhe.</p>
-        <p class="sobre-endereco">📍 Rua Araguaia 1763 · Sala 734 · 6° andar</p>
+        
       </div>
     </div>
   </section>
@@ -182,8 +182,9 @@
       <div class="planos-tabs">
         <button class="plano-tab active" onclick="showTab('pilates','mensal',this)">Mensal</button>
         <button class="plano-tab" onclick="showTab('pilates','trimestral',this)">Trimestral</button>
-        <button class="plano-tab" onclick="showTab('pilates','semestral',this)">Semestral</button>
+        <button class="plano-tab plano-tab-popular" onclick="showTab('pilates','semestral',this)">Semestral ✦</button>
       </div>
+      <p class="planos-popular-nota">✦ plano mais popular</p>
 
       <div class="planos-panel active" id="pilates-mensal">
         <table class="planos-table">
@@ -230,23 +231,23 @@
           <tbody>
             <tr>
               <td>1x por semana</td>
-              <td class="preco">R$ 170</td>
+              <td class="preco">R$ 170 <span class="economia">você economiza R$ 30 no trimestre</span></td>
             </tr>
             <tr>
               <td>2x por semana</td>
-              <td class="preco">R$ 275</td>
+              <td class="preco">R$ 275 <span class="economia">você economiza R$ 45 no trimestre</span></td>
             </tr>
             <tr>
               <td>3x por semana</td>
-              <td class="preco">R$ 370</td>
+              <td class="preco">R$ 370 <span class="economia">você economiza R$ 60 no trimestre</span></td>
             </tr>
             <tr>
               <td>4x por semana</td>
-              <td class="preco">R$ 455</td>
+              <td class="preco">R$ 455 <span class="economia">você economiza R$ 75 no trimestre</span></td>
             </tr>
             <tr>
               <td>5x por semana</td>
-              <td class="preco">R$ 530</td>
+              <td class="preco">R$ 530 <span class="economia">você economiza R$ 90 no trimestre</span></td>
             </tr>
           </tbody>
         </table>
@@ -264,23 +265,23 @@
           <tbody>
             <tr>
               <td>1x por semana</td>
-              <td class="preco">R$ 160</td>
+              <td class="preco">R$ 160 <span class="economia">você economiza R$ 120 no semestre</span></td>
             </tr>
             <tr>
               <td>2x por semana</td>
-              <td class="preco">R$ 255</td>
+              <td class="preco">R$ 255 <span class="economia">você economiza R$ 210 no semestre</span></td>
             </tr>
             <tr>
               <td>3x por semana</td>
-              <td class="preco">R$ 345</td>
+              <td class="preco">R$ 345 <span class="economia">você economiza R$ 270 no semestre</span></td>
             </tr>
             <tr>
               <td>4x por semana</td>
-              <td class="preco">R$ 430</td>
+              <td class="preco">R$ 430 <span class="economia">você economiza R$ 300 no semestre</span></td>
             </tr>
             <tr>
               <td>5x por semana</td>
-              <td class="preco">R$ 499</td>
+              <td class="preco">R$ 499 <span class="economia">você economiza R$ 366 no semestre</span></td>
             </tr>
           </tbody>
         </table>
@@ -356,7 +357,7 @@
             </table>
           </div>
         </div>
-        <p class="yoga-nota">* Valores personalizados conforme modalidade, frequência e número de participantes. Entre
+        <p class="yoga-nota" style="font-size: 8pt; margin-top:15px">* Valores personalizados conforme modalidade, frequência e número de participantes. Entre
           em contato para saber mais.</p>
       </div>
 
@@ -480,7 +481,7 @@
       <p class="loc-eyebrow">Localização</p>
       <h2 class="loc-title">Um lugar para<br>se <em>reconectar.</em></h2>
       <p class="loc-address">
-        Rua Araguaia, 1763<br>
+        📍 Rua Araguaia, 1763<br>
         Sala 734 — 6° andar
       </p>
       <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Araguaia,+1763,+Rio+de+Janeiro,+RJ"
