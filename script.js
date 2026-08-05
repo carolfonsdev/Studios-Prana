@@ -1,7 +1,14 @@
+const CONFIG = {
+  whatsapp: '5521966268540',
+};
+
 const PILATES_HORARIOS = ['15:00', '16:00', '17:00', '18:00', '19:00'];
 
-// Adicione ou remova horários aqui para bloquear vagas
-const HORARIOS_LOTADOS = [];
+const HORARIOS_LOTADOS = {
+  'Quarta-feira': [],
+  'Sexta-feira': [],
+  'Quartas e Sextas': [],
+};
 
 const PLANOS_PILATES = {
   mensal: [
@@ -10,6 +17,8 @@ const PLANOS_PILATES = {
     { freq: '3x/semana', preco: 'R$ 390/mês' },
     { freq: '4x/semana', preco: 'R$ 480/mês' },
     { freq: '5x/semana', preco: 'R$ 560/mês' },
+    { freq: 'Wellhub', preco: ' a partir do Silver+', plataforma: 'wellhub' },
+    { freq: 'Totalpass', preco: 'a partir do TP5+', plataforma: 'totalpass' }
   ],
   trimestral: [
     { freq: '1x/semana', preco: 'R$ 170/mês' },
@@ -17,6 +26,8 @@ const PLANOS_PILATES = {
     { freq: '3x/semana', preco: 'R$ 370/mês' },
     { freq: '4x/semana', preco: 'R$ 455/mês' },
     { freq: '5x/semana', preco: 'R$ 530/mês' },
+    { freq: 'Wellhub', preco: ' a partir do Silver+', plataforma: 'wellhub' },
+    { freq: 'Totalpass', preco: 'a partir do TP5+', plataforma: 'totalpass' }
   ],
   semestral: [
     { freq: '1x/semana', preco: 'R$ 160/mês' },
@@ -24,19 +35,21 @@ const PLANOS_PILATES = {
     { freq: '3x/semana', preco: 'R$ 345/mês' },
     { freq: '4x/semana', preco: 'R$ 430/mês' },
     { freq: '5x/semana', preco: 'R$ 499/mês' },
+    { freq: 'Wellhub', preco: ' a partir do Silver+', plataforma: 'wellhub' },
+    { freq: 'Totalpass', preco: 'a partir do TP5+', plataforma: 'totalpass' }
   ],
 };
 
 
 // ── ESTADO DO AGENDAMENTO ─────────────────────────────────────
 
-// Guarda todas as escolhas do usuário durante o fluxo do modal
 let state = {};
 
 function resetState() {
   state = {
     step: 1,
     atividade: '',
+    dia: '',
     subAtividade: '',
     grupoTipo: '',
     pessoas: '',
@@ -58,27 +71,33 @@ function isGrupo() {
   return state.subAtividade && state.subAtividade.includes('Grupo');
 }
 
-/**
- * Retorna o total de steps conforme a atividade escolhida:
- * - Pilates:       Atividade → Horário → Plano → Dados  (4 steps)
- * - Yoga individual: Atividade → Modalidade → Horário → Dados  (4 steps)
- * - Yoga em grupo: Atividade → Modalidade → Tipo → Pessoas → Horário → Dados  (6 steps)
- */
 function getTotalSteps() {
-  if (state.atividade === 'Pilates') return 4;
+  if (state.atividade === 'Pilates') {
+    if (isPlanoPlataforma()) return 3;
+    const freq = state.plano.split(' ')[0];
+    return freq === '1x/semana' ? 5 : 4;
+  }
   if (isGrupo()) return 6;
   return 4;
 }
 
-/**
- * Mapeia o número do step para um nome lógico,
- * facilitando saber qual tela renderizar.
- */
+function isPlanoPlataforma() {
+  return state.plano.includes('Wellhub') || state.plano.includes('Totalpass');
+}
+
 function getLogicStep() {
   const n = state.step;
 
   if (state.atividade === 'Pilates') {
-    return ['atividade', 'horario', 'plano', 'dados'][n - 1];
+    if (isPlanoPlataforma()) {
+      return ['atividade', 'plano', 'dados'][n - 1] || 'dados';
+    }
+    const freq = state.plano.split(' ')[0];
+    if (freq === '1x/semana') {
+      return ['atividade', 'plano', 'dia', 'horario', 'dados'][n - 1];
+    } else {
+      return ['atividade', 'plano', 'horario', 'dados'][n - 1];
+    }
   }
 
   if (isGrupo()) {
@@ -92,6 +111,7 @@ function podeAvancar() {
   const step = getLogicStep();
   const validacoes = {
     atividade: () => !!state.atividade,
+    dia: () => !!state.dia,
     subatividade: () => !!state.subAtividade,
     grupo: () => !!state.grupoTipo,
     pessoas: () => !!state.pessoas,
@@ -139,6 +159,7 @@ function renderDots() {
 function renderBody() {
   const renderers = {
     atividade: renderAtividade,
+    dia: renderDia,
     subatividade: renderSubAtividade,
     grupo: renderGrupo,
     pessoas: renderPessoas,
@@ -189,6 +210,17 @@ function renderAtividade() {
   ];
 
   return renderOpcoes(opcoes, 'atividade', state.atividade);
+}
+
+function renderDia() {
+  document.getElementById('stepTitle').innerHTML = 'Qual dia<br><em>você prefere?</em>';
+
+  const opcoes = [
+    { val: 'Quarta-feira', det: 'Aulas às quartas' },
+    { val: 'Sexta-feira',  det: 'Aulas às sextas'  }
+  ];
+
+  return renderOpcoes(opcoes, 'dia', state.dia);
 }
 
 function renderSubAtividade() {
@@ -248,8 +280,10 @@ function renderHorario() {
 }
 
 function renderHorarioPilates() {
+  const lotadosNoDia = HORARIOS_LOTADOS[state.dia] || [];
+
   const botoes = PILATES_HORARIOS.map(h => {
-    const lotado = HORARIOS_LOTADOS.includes(h);
+    const lotado = lotadosNoDia.includes(h);
     const isEspera = state.horario === `Lista de espera — ${h}`;
     const isSelecionado = state.horario === h;
 
@@ -271,7 +305,7 @@ function renderHorarioPilates() {
     : '';
 
   return `
-    <p class="agendar-nota">Aulas de <strong>50 minutos</strong> · Quarta-feira e Sexta-feira</p>
+    <p class="agendar-nota">Aulas de <strong>50 minutos</strong> · <strong>${state.dia}</strong></p>
     <div class="horarios-grid">${botoes}</div>
     ${avisoEspera}`;
 }
@@ -314,27 +348,59 @@ function renderPlanoPilates() {
           class="plano-periodo-btn ${state.periodoAtivo === t ? 'active' : ''}"
           onclick="mudarPeriodo('${t}')">
           ${t.charAt(0).toUpperCase() + t.slice(1)}
+          ${t === 'semestral' ? ' ✦' : ''}
         </button>`).join('')}
     </div>`;
 
-  const itens = PLANOS_PILATES[state.periodoAtivo].map(p => {
-    const id = `${p.freq} ${state.periodoAtivo} — ${p.preco}`;
-    const popular = p.freq === '2x/semana';
-    const sel = state.plano === id;
+  const planosNormais = PLANOS_PILATES[state.periodoAtivo]
+  .filter(p => !p.plataforma);
 
-    return `
-      <div class="plano-opcao ${sel ? 'selected' : ''}" onclick="selecionarPlano('${id}')">
-        <div class="plano-opcao-check">✓</div>
-        <div class="plano-opcao-info">
-          <div class="plano-opcao-nome">${p.freq}</div>
-          <div class="plano-opcao-detalhe">Plano ${state.periodoAtivo}</div>
-        </div>
-        <div class="plano-opcao-preco">${p.preco}</div>
-        ${popular ? '<div class="plano-popular-badge">Popular</div>' : ''}
-      </div>`;
-  }).join('');
+const planosCredenciados = PLANOS_PILATES[state.periodoAtivo]
+  .filter(p => p.plataforma);
 
-  return tabsHtml + `<div class="plano-opcoes">${itens}</div>`;
+const renderCard = (p) => {
+  const id = p.plataforma
+    ? p.freq
+    : `${p.freq} ${state.periodoAtivo} — ${p.preco}`;
+
+  const popular = p.freq === '2x/semana';
+  const sel = state.plano === id;
+  const isPlataforma = !!p.plataforma;
+
+  return `
+    <div class="plano-opcao ${sel ? 'selected' : ''} ${isPlataforma ? 'plano-opcao-credenciado' : ''}"
+         onclick="selecionarPlano('${id}')">
+
+      <div class="plano-opcao-check">✓</div>
+
+      <div class="plano-opcao-info">
+        <div class="plano-opcao-nome">${p.freq}</div>
+
+        ${
+          !isPlataforma
+            ? `<div class="plano-opcao-detalhe">Plano ${state.periodoAtivo}</div>`
+            : ''
+        }
+      </div>
+
+      <div class="plano-opcao-preco">${p.preco}</div>
+
+      ${popular ? '<div class="plano-popular-badge">Popular</div>' : ''}
+    </div>
+  `;
+};
+
+return `
+  ${tabsHtml}
+
+  <div class="plano-opcoes">
+    ${planosNormais.map(renderCard).join('')}
+  </div>
+
+  <div class="plataformas-opcoes">
+    ${planosCredenciados.map(renderCard).join('')}
+  </div>
+`;
 }
 
 function renderPlanoYoga() {
@@ -367,11 +433,19 @@ function renderDados() {
 
   const atividade = state.atividade === 'Yoga' ? (state.subAtividade || 'Yoga') : state.atividade;
   const pessoas = state.pessoas ? ` · <strong>Grupo:</strong> ${state.pessoas}` : '';
+  const diaInfo = state.dia ? ` &nbsp;·&nbsp; <strong>Dia:</strong> ${state.dia}` : '';
+  const horarioInfo = isPlanoPlataforma()
+    ? ' &nbsp;·&nbsp; <strong>Horários:</strong> serão enviados pelo WhatsApp'
+    : ` &nbsp;·&nbsp; <strong>Horário:</strong> ${state.horario}`;
+  const plataformaAviso = isPlanoPlataforma()
+    ? '<p class="agendar-nota">Para Wellhub/Totalpass, os horários disponíveis serão informados pelo WhatsApp.</p>'
+    : '';
 
   return `
+    ${plataformaAviso}
     <div class="dados-resumo">
-      <strong>Atividade:</strong> ${atividade}${pessoas} &nbsp;·&nbsp;
-      <strong>Horário:</strong> ${state.horario}
+      <strong>Atividade:</strong> ${atividade}${pessoas}${diaInfo} &nbsp;·&nbsp;
+      ${horarioInfo}
       ${state.plano ? ` &nbsp;·&nbsp; <strong>Plano:</strong> ${state.plano}` : ''}
     </div>
     <div class="dados-form">
@@ -380,12 +454,8 @@ function renderDados() {
         <input type="text" id="dadosNome" placeholder="Como prefere ser chamada?" value="${state.nome}">
       </div>
       <div class="dados-input-group">
-        <label>WhatsApp</label>
-        <input type="tel" id="dadosTel" placeholder="(21) 99999-9999" value="${state.tel}">
-      </div>
-      <div class="dados-input-group">
-        <label>E-mail <span class="label-opcional">(opcional)</span></label>
-        <input type="email" id="dadosEmail" placeholder="seu@email.com" value="${state.email}">
+        <label>Experiência com Pilates</label>
+        <input type="text" id="dadosPilates" placeholder="Você já praticou Pilates? Conte há quanto tempo: " value="${state.tel}">
       </div>
       <div class="dados-input-group">
         <label>Observações <span class="label-opcional">(opcional)</span></label>
@@ -397,7 +467,6 @@ function renderDados() {
 
 // ── HELPERS DE RENDERIZAÇÃO ───────────────────────────────────
 
-/** Gera um grid de botões de opção */
 function renderOpcoes(opcoes, campo, valorAtual) {
   return `
     <div class="opcoes-grid">
@@ -419,11 +488,15 @@ function renderOpcoesBtns(opcoes, campo, valorAtual) {
 // ── AÇÕES DO USUÁRIO ──────────────────────────────────────────
 
 function pick(campo, valor) {
-  // Reseta campos dependentes ao mudar atividade ou modalidade
   if (campo === 'atividade') {
-    Object.assign(state, { atividade: valor, subAtividade: '', grupoTipo: '', pessoas: '', horario: '', plano: '', listaEspera: false });
+    Object.assign(state, { atividade: valor, plano: '', dia: '', subAtividade: '', grupoTipo: '', pessoas: '', horario: '', listaEspera: false });
   } else if (campo === 'subAtividade') {
     Object.assign(state, { subAtividade: valor, grupoTipo: '', pessoas: '', horario: '', plano: '', listaEspera: false });
+  } else if (campo === 'plano') {
+    state.plano = valor;
+    state.dia = '';
+    state.horario = '';
+    state.listaEspera = false;
   } else {
     state[campo] = valor;
   }
@@ -444,6 +517,16 @@ function selecionarEspera(horario) {
 
 function selecionarPlano(nome) {
   state.plano = nome;
+  if (isPlanoPlataforma()) {
+    state.dia = '';
+    state.horario = '';
+  } else if (nome.includes('2x/semana')) {
+    state.dia = 'Quartas e Sextas';
+  } else {
+    state.dia = '';
+  }
+  state.horario = '';
+  state.listaEspera = false;
   renderStep();
 }
 
@@ -469,8 +552,6 @@ function voltarStep() {
 
 function coletarDados() {
   state.nome = document.getElementById('dadosNome')?.value || '';
-  state.tel = document.getElementById('dadosTel')?.value || '';
-  state.email = document.getElementById('dadosEmail')?.value || '';
   state.obs = document.getElementById('dadosObs')?.value || '';
 }
 
@@ -479,28 +560,29 @@ function montarMensagem() {
 
   const atividade = state.atividade === 'Yoga' ? (state.subAtividade || 'Yoga') : state.atividade;
   const pessoasLinha = state.pessoas ? `*Pessoas no grupo:* ${state.pessoas}\n` : '';
+  const diaLinha = state.dia ? `*Dia preferido:* ${state.dia}\n` : '';
   const planoLinha = state.plano ? `*Plano desejado:* ${state.plano}\n` : '';
-  const emailLinha = state.email ? `*E-mail:* ${state.email}\n` : '';
+  const horarioLinha = isPlanoPlataforma()
+    ? '*Plataforma:* Wellhub/Totalpass\n'
+    : `*Horário preferido:* ${state.horario}${state.listaEspera ? ' (lista de espera)' : ''}\n`;
   const obsLinha = state.obs ? `*Observações:* ${state.obs}\n` : '';
-  const espera = state.listaEspera ? ' (lista de espera)' : '';
 
   return [
     `Olá! Tenho interesse em agendar uma aula no Studios Prana 💜\n`,
     `*Nome:* ${state.nome || 'Não informado'}`,
     `*Atividade:* ${atividade}`,
     pessoasLinha,
-    `*Horário preferido:* ${state.horario}${espera}`,
+    diaLinha,
+    horarioLinha,
     planoLinha,
-    `*WhatsApp:* ${state.tel || 'Não informado'}`,
-    emailLinha,
     obsLinha,
-    `\nAguardo retorno! 🙏`,
+    `\nAguardo retorno!`,
   ].join('\n');
 }
 
 function enviarWhatsApp() {
   const msg = montarMensagem();
-  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURI(msg)}`, '_blank');
 }
 
 
@@ -529,7 +611,6 @@ function loginProfessora() {
   const email = document.querySelector('.login-modal input[type="email"]').value;
   const senha = document.querySelector('.login-modal input[type="password"]').value;
 
-  // TODO: substituir por autenticação real
   if (email === 'gmail@prana.com' && senha === '123456') {
     document.getElementById('loginOverlay').classList.remove('open');
     window.location.href = 'painel.html';
@@ -543,20 +624,17 @@ function loginProfessora() {
 // ── INICIALIZAÇÃO DA PÁGINA ───────────────────────────────────
 
 (function init() {
-  // Scroll sempre do topo ao carregar
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   if (window.location.hash) {
     history.replaceState(null, document.title, window.location.pathname + window.location.search);
   }
   window.scrollTo(0, 0);
 
-  // Sombra na nav ao scrollar
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     nav.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(107,94,168,0.1)' : 'none';
   });
 
-  // Animação de entrada dos elementos .reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
@@ -608,4 +686,3 @@ function fecharDrawer() {
   document.getElementById('navDrawer').classList.remove('open');
   document.body.style.overflow = '';
 }
-

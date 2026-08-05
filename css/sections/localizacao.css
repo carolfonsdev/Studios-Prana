@@ -3,7 +3,7 @@
     background: var(--bege-dark);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 2rem;
     align-items: center;
     border-top: 0.5px solid rgba(0, 0, 0, 0.07);
 }
