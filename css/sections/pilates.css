@@ -8,6 +8,20 @@
     color: var(--roxo);
 }
 
+/* Nota "mais popular" abaixo das abas */
+.planos-popular-nota {
+    font-size: 11px;
+    color: var(--verde);
+    font-style: italic;
+    margin-top: -1.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.03em;
+}
+
+.plano-tab-popular {
+    position: relative;
+}
+
 .planos-panel {
     display: none;
 }
@@ -56,10 +70,20 @@
     color: var(--texto);
 }
 
+/* Hint de economia inline no preço */
 .planos-table td.preco {
     color: var(--roxo);
     font-weight: 500;
     font-size: 15px;
+}
+
+.economia {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--verde);
+    margin-top: 2px;
+    letter-spacing: 0.01em;
 }
 
 .planos-nota {
