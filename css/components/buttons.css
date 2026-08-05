@@ -525,6 +525,63 @@
     color: #fff;
 }
 
+.plano-opcao-credenciado {
+    width: fit-content;
+    padding: 6px 10px;
+    gap: 6px;
+    border-style: dashed;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px dashed rgba(107, 94, 168, 0.25);
+    box-shadow: none;
+}
+
+.plano-opcao-credenciado:hover:not(.selected) {
+    border-color: rgba(107, 94, 168, 0.35);
+    background: rgba(107, 94, 168, 0.03);
+}
+
+.plano-opcao-credenciado .plano-opcao-check {
+    width: 14px;
+    height: 14px;
+    font-size: 7px;
+}
+
+.plano-opcao-credenciado .plano-opcao-nome {
+    font-size: 10px;
+}
+
+.plano-opcao-credenciado .plano-opcao-detalhe {
+    display: none;
+}
+
+.plano-opcao-credenciado .plano-opcao-preco {
+    font-size: 9px;
+}
+
+.plano-opcao-credenciado .plano-opcao-info {
+    min-width: 0;
+}
+
+.plano-opcao-credenciado .plano-plataforma-tag {
+    margin-top: 2px;
+    padding: 1px 3px;
+    font-size: 5px;
+}
+
+.plataformas-opcoes{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:18px;
+    flex-wrap:wrap;
+}
+
+.plataformas-opcoes .plano-opcao{
+    flex:1;
+    max-width:220px;
+}
+
 .plano-opcao-check {
     width: 22px;
     height: 22px;
@@ -579,6 +636,29 @@
 
 .plano-opcao.selected .plano-opcao-preco {
     color: #fff;
+}
+
+.plano-plataforma-tag {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 1px 5px;
+    border-radius: 999px;
+    border: 1px solid rgba(107, 94, 168, 0.18);
+    background: rgba(255, 255, 255, 0.38);
+    color: var(--texto-muted);
+    font-size: 6px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+}
+
+.plano-opcao.selected .plano-plataforma-tag {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .plano-popular-badge {
