@@ -58,8 +58,7 @@ function resetState() {
     plano: '',
     periodoAtivo: 'mensal',
     nome: '',
-    tel: '',
-    email: '',
+    experienciaPilates: '',
     obs: '',
   };
 }
@@ -454,8 +453,8 @@ function renderDados() {
         <input type="text" id="dadosNome" placeholder="Como prefere ser chamada?" value="${state.nome}">
       </div>
       <div class="dados-input-group">
-        <label>Experiência com Pilates</label>
-        <input type="text" id="dadosPilates" placeholder="Você já praticou Pilates? Conte há quanto tempo: " value="${state.tel}">
+        <label>Experiência com Pilates <span class="label-opcional">(opcional)</span></label>
+        <input type="text" id="dadosPilates" placeholder="Você já praticou Pilates? Conte há quanto tempo:" value="${state.experienciaPilates}">
       </div>
       <div class="dados-input-group">
         <label>Observações <span class="label-opcional">(opcional)</span></label>
@@ -552,6 +551,7 @@ function voltarStep() {
 
 function coletarDados() {
   state.nome = document.getElementById('dadosNome')?.value || '';
+  state.experienciaPilates = document.getElementById('dadosPilates')?.value || '';
   state.obs = document.getElementById('dadosObs')?.value || '';
 }
 
@@ -565,16 +565,18 @@ function montarMensagem() {
   const horarioLinha = isPlanoPlataforma()
     ? '*Plataforma:* Wellhub/Totalpass\n'
     : `*Horário preferido:* ${state.horario}${state.listaEspera ? ' (lista de espera)' : ''}\n`;
+  const experienciaLinha = state.experienciaPilates ? `*Experiência com Pilates:* ${state.experienciaPilates}\n` : '';
   const obsLinha = state.obs ? `*Observações:* ${state.obs}\n` : '';
 
   return [
-    `Olá! Tenho interesse em agendar uma aula no Studios Prana \n`,
+    `Olá! Tenho interesse em agendar uma aula no Studios Prana\n`,
     `*Nome:* ${state.nome || 'Não informado'}`,
     `*Atividade:* ${atividade}`,
     pessoasLinha,
     diaLinha,
     horarioLinha,
     planoLinha,
+    experienciaLinha,
     obsLinha,
     `\nAguardo retorno!`,
   ].join('\n');
@@ -582,7 +584,7 @@ function montarMensagem() {
 
 function enviarWhatsApp() {
   const msg = montarMensagem();
-  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURI(msg)}`, '_blank');
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 
@@ -597,8 +599,8 @@ function enviarAvisoEvento() {
     return;
   }
 
-  const msg = `Olá! Quero ser avisada sobre eventos e retiros do Studios Prana\n\nMeu e-mail: ${email}`;
-  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURI(msg)}`, '_blank');
+  const msg = `Olá! Quero ser avisada sobre eventos e retiros do Studios Prana 🌿\n\nMeu e-mail: ${email}`;
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
 
   document.getElementById('eventosEmailForm').style.display = 'none';
   document.getElementById('eventosEmailOk').style.display = 'flex';
