@@ -584,7 +584,7 @@ function montarMensagem() {
 
 function enviarWhatsApp() {
   const msg = montarMensagem();
-  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURI(msg)}`, '_blank');
 }
 
 
